@@ -1,3 +1,4 @@
+/// Represents an authenticated user stored locally via Hive.
 class UserModel {
   final String phone;
   final String password;
@@ -13,4 +14,9 @@ class UserModel {
         phone: json['phone'] as String,
         password: json['password'] as String,
       );
+
+  /// Returns an abbreviated display name from the phone number.
+  String get displayName => phone.length > 6
+      ? '${phone.substring(0, 3)}***${phone.substring(phone.length - 3)}'
+      : phone;
 }

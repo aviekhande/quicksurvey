@@ -1,31 +1,73 @@
 import 'package:flutter/material.dart';
 
+/// Centralized color palette for the entire app.
+/// All colors are defined here to ensure consistency.
 class AppColors {
   AppColors._();
 
-  static const kColorPrimary = Color(0xFF607BFF);
-  static const kColorPrimaryBg = Color(0xFF0D1117);
-  static const kColorSecondary = Color(0xFF1ABC9C);
-  static const kColorPrimaryText = Color(0xffEAEAEA);
+  // ── Primary brand colors ──────────────────────────────────────────────────
+  static const kColorPrimary = Color(0xFF6C63FF);
+  static const kColorPrimaryLight = Color(0xFF8B85FF);
+  static const kColorPrimaryDark = Color(0xFF4A42D4);
+  static const kColorSecondary = Color(0xFF00D4AA);
+  static const kColorAccent = Color(0xFFFF6B9D);
 
-  static const kColorWhite = Color(0xffEAEAEA);
-  static const kColorWhite100 = Color(0xFFEAEAEA);
-  static const kColorWhite75 = Color(0xFFB3B4B5);
-  static const kColorWhite50 = Color(0xFF7B7D80);
-  static const kColorCrlBorder = Color(0xFF44474C);
-  static const kColorWhite25 = Color(0xFF44474C);
-  static const kColorWhite15 = Color(0xFF2E3237);
-  static const kColorWhite5 = Color(0xFF181C22);
-  static const kColorWhite0 = Color(0xFF0D1117);
-  static const kColorError = Color(0xffE74C3C);
+  // ── Background layers ─────────────────────────────────────────────────────
+  static const kColorBg = Color(0xFF0A0D1A);
+  static const kColorBgSurface = Color(0xFF111420);
+  static const kColorCard = Color(0xFF161B2E);
+  static const kColorCardElevated = Color(0xFF1C2236);
 
-  static const kColorPurple100 = Color(0xFF607BFF);
-  static const kColorCardBg = Color(0xFF181C22);
-  static const kColorCardBorder = Color(0xFF2E3237);
+  // ── Text hierarchy ────────────────────────────────────────────────────────
+  static const kColorText = Color(0xFFF0F0FF);
+  static const kColorTextSecondary = Color(0xFFB0B3C8);
+  static const kColorTextMuted = Color(0xFF6B6F8A);
+  static const kColorTextDisabled = Color(0xFF3D4160);
 
+  // ── Borders ───────────────────────────────────────────────────────────────
+  static const kColorBorder = Color(0xFF252A42);
+  static const kColorBorderFocused = Color(0xFF6C63FF);
+
+  // ── Status colors ─────────────────────────────────────────────────────────
+  static const kColorSuccess = Color(0xFF00D4AA);
+  static const kColorError = Color(0xFFFF4E6A);
+  static const kColorWarning = Color(0xFFFFB347);
+  static const kColorInfo = Color(0xFF4FC3F7);
+
+  // ── Gradient sets ─────────────────────────────────────────────────────────
+  static const gradientPrimary = LinearGradient(
+    colors: [Color(0xFF6C63FF), Color(0xFF9B59B6)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const gradientSuccess = LinearGradient(
+    colors: [Color(0xFF00D4AA), Color(0xFF00B4D8)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const gradientCard = LinearGradient(
+    colors: [Color(0xFF161B2E), Color(0xFF1C2236)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const gradientError = LinearGradient(
+    colors: [Color(0xFFFF4E6A), Color(0xFFFF8E53)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  // ── Questionnaire card accent colors ──────────────────────────────────────
+  static const List<Color> cardAccents = [
+    Color(0xFF6C63FF), // Purple
+    Color(0xFF00D4AA), // Teal
+    Color(0xFFFFB347), // Orange
+    Color(0xFFFF6B9D), // Pink
+    Color(0xFF4FC3F7), // Blue
+  ];
+
+  // ── Transparent ───────────────────────────────────────────────────────────
   static const kColorTransparent = Colors.transparent;
-
-  static const kColorStatusSuccess = Color(0xFF59C38E);
-  static const kColorStatusFailure = Color(0xFFE57373);
-  static const kColorWarning = Color(0xFFF39C12);
 }
