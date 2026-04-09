@@ -76,158 +76,137 @@ class _RegisterScreenState extends State<RegisterScreen>
     final ctrl = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: AppColors.kColorBg,
-      body: Stack(
-        children: [
-          Positioned(
-            bottom: -120,
-            left: -80,
-            child: Container(
-              width: 320,
-              height: 320,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    AppColors.kColorSecondary.withOpacity(0.12),
-                    Colors.transparent,
-                  ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          child: Form(
+            key: ctrl.registerFormKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 24),
+                _animated(0, const RegisterHeader()),
+                const SizedBox(height: 40),
+                _animated(
+                  1,
+                  AppTextField(
+                    controller: ctrl.registerPhoneCtrl,
+                    hintText: '+91 9876543210',
+                    labelText: 'Phone Number',
+                    keyboardType: TextInputType.phone,
+                    validator: ctrl.validatePhone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
+                    ],
+                    prefixIcon: const Icon(
+                      AppIcons.phoneOutlined,
+                      color: AppColors.kColorTextMuted,
+                      size: 20,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              child: Form(
-                key: ctrl.registerFormKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 24),
-                    _animated(0, const RegisterHeader()),
-                    const SizedBox(height: 40),
-                    _animated(
-                      1,
-                      AppTextField(
-                        controller: ctrl.registerPhoneCtrl,
-                        hintText: '+91 9876543210',
-                        labelText: 'Phone Number',
-                        keyboardType: TextInputType.phone,
-                        validator: ctrl.validatePhone,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
-                        ],
-                        prefixIcon: const Icon(
-                          AppIcons.phoneOutlined,
+                const SizedBox(height: 20),
+                _animated(
+                  2,
+                  Obx(
+                    () => AppTextField(
+                      controller: ctrl.registerPassCtrl,
+                      hintText: 'Minimum 6 characters',
+                      labelText: 'Password',
+                      obscureText: ctrl.obscureRegisterPass.value,
+                      validator: ctrl.validatePassword,
+                      prefixIcon: const Icon(
+                        AppIcons.lockOutlineRounded,
+                        color: AppColors.kColorTextMuted,
+                        size: 20,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () => ctrl.obscureRegisterPass.toggle(),
+                        child: Icon(
+                          ctrl.obscureRegisterPass.value
+                              ? AppIcons.visibilityOffOutlined
+                              : AppIcons.visibilityOutlined,
                           color: AppColors.kColorTextMuted,
                           size: 20,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    _animated(
-                      2,
-                      Obx(
-                        () => AppTextField(
-                          controller: ctrl.registerPassCtrl,
-                          hintText: 'Minimum 6 characters',
-                          labelText: 'Password',
-                          obscureText: ctrl.obscureRegisterPass.value,
-                          validator: ctrl.validatePassword,
-                          prefixIcon: const Icon(
-                            AppIcons.lockOutlineRounded,
-                            color: AppColors.kColorTextMuted,
-                            size: 20,
-                          ),
-                          suffixIcon: GestureDetector(
-                            onTap: () => ctrl.obscureRegisterPass.toggle(),
-                            child: Icon(
-                              ctrl.obscureRegisterPass.value
-                                  ? AppIcons.visibilityOffOutlined
-                                  : AppIcons.visibilityOutlined,
-                              color: AppColors.kColorTextMuted,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    _animated(
-                      3,
-                      Obx(
-                        () => AppTextField(
-                          controller: ctrl.registerConfirmPassCtrl,
-                          hintText: 'Re-enter your password',
-                          labelText: 'Confirm Password',
-                          obscureText: ctrl.obscureRegisterConfirm.value,
-                          validator: ctrl.validateConfirmPassword,
-                          textInputAction: TextInputAction.done,
-                          onFieldSubmitted: (_) => ctrl.register(),
-                          prefixIcon: const Icon(
-                            AppIcons.lockOutlineRounded,
-                            color: AppColors.kColorTextMuted,
-                            size: 20,
-                          ),
-                          suffixIcon: GestureDetector(
-                            onTap: () => ctrl.obscureRegisterConfirm.toggle(),
-                            child: Icon(
-                              ctrl.obscureRegisterConfirm.value
-                                  ? AppIcons.visibilityOffOutlined
-                                  : AppIcons.visibilityOutlined,
-                              color: AppColors.kColorTextMuted,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    _animated(
-                      4,
-                      Obx(
-                        () => PrimaryButton(
-                          label: 'Create Account',
-                          isLoading: ctrl.isLoading.value,
-                          onTap: ctrl.register,
-                          icon: AppIcons.personAddOutlined,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 28),
-                    _animated(
-                      4,
-                      Center(
-                        child: GestureDetector(
-                          onTap: () => Get.offNamed(AppRoutes.login),
-                          child: RichText(
-                            text: const TextSpan(
-                              text: 'Already have an account? ',
-                              style: TextStyle(
-                                color: AppColors.kColorTextMuted,
-                                fontSize: 14,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'Login',
-                                  style: TextStyle(
-                                    color: AppColors.kColorPrimary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+                  ),
                 ),
-              ),
+                const SizedBox(height: 20),
+                _animated(
+                  3,
+                  Obx(
+                    () => AppTextField(
+                      controller: ctrl.registerConfirmPassCtrl,
+                      hintText: 'Re-enter your password',
+                      labelText: 'Confirm Password',
+                      obscureText: ctrl.obscureRegisterConfirm.value,
+                      validator: ctrl.validateConfirmPassword,
+                      textInputAction: TextInputAction.done,
+                      onFieldSubmitted: (_) => ctrl.register(),
+                      prefixIcon: const Icon(
+                        AppIcons.lockOutlineRounded,
+                        color: AppColors.kColorTextMuted,
+                        size: 20,
+                      ),
+                      suffixIcon: GestureDetector(
+                        onTap: () => ctrl.obscureRegisterConfirm.toggle(),
+                        child: Icon(
+                          ctrl.obscureRegisterConfirm.value
+                              ? AppIcons.visibilityOffOutlined
+                              : AppIcons.visibilityOutlined,
+                          color: AppColors.kColorTextMuted,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                _animated(
+                  4,
+                  Obx(
+                    () => PrimaryButton(
+                      label: 'Create Account',
+                      isLoading: ctrl.isLoading.value,
+                      onTap: ctrl.register,
+                      icon: AppIcons.personAddOutlined,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 28),
+                _animated(
+                  4,
+                  Center(
+                    child: GestureDetector(
+                      onTap: () => Get.offNamed(AppRoutes.login),
+                      child: RichText(
+                        text: const TextSpan(
+                          text: 'Already have an account? ',
+                          style: TextStyle(
+                            color: AppColors.kColorTextMuted,
+                            fontSize: 14,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: 'Login',
+                              style: TextStyle(
+                                color: AppColors.kColorPrimary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -34,7 +34,7 @@ class RegisterHeader extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         const Text(
-          'Create Account ✨',
+          'Create Account',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w800,

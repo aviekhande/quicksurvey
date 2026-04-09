@@ -26,11 +26,15 @@ class LoginHeader extends StatelessWidget {
               ),
             ],
           ),
-          child: const Icon(AppIcons.boltRounded, color: Colors.white, size: 30),
+          child: const Icon(
+            AppIcons.boltRounded,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
         const SizedBox(height: 24),
         const Text(
-          'Welcome Back! 👋',
+          'Welcome Back!',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w800,
