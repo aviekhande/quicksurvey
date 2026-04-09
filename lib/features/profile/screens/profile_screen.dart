@@ -53,7 +53,9 @@ class _ProfileAppBar extends StatelessWidget {
         color: AppColors.kColorBg,
         border: Border(
           bottom: BorderSide(
-              color: AppColors.kColorBorder.withOpacity(0.5), width: 1),
+            color: AppColors.kColorBorder.withOpacity(0.5),
+            width: 1,
+          ),
         ),
       ),
       child: Row(
@@ -217,7 +219,9 @@ class _AnimatedStatsCard extends GetView<ProfileController> {
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-            color: AppColors.kColorPrimary.withOpacity(0.25), width: 1.5),
+          color: AppColors.kColorPrimary.withOpacity(0.25),
+          width: 1.5,
+        ),
       ),
       child: Row(
         children: [
@@ -255,7 +259,9 @@ class _AnimatedStatsCard extends GetView<ProfileController> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Obx(() => _CounterText(target: controller.submissionCount.value)),
+                Obx(
+                  () => _CounterText(target: controller.submissionCount.value),
+                ),
               ],
             ),
           ),
@@ -294,9 +300,10 @@ class _CounterTextState extends State<_CounterText>
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
-    _countAnim = IntTween(begin: 0, end: widget.target).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeOutCubic),
-    );
+    _countAnim = IntTween(
+      begin: 0,
+      end: widget.target,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOutCubic));
     _ctrl.forward();
   }
 
@@ -342,13 +349,15 @@ class _HistorySection extends GetView<ProfileController> {
               ),
             ),
             const Spacer(),
-            Obx(() => Text(
-                  '${controller.submissions.length} total',
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.kColorTextMuted,
-                  ),
-                )),
+            Obx(
+              () => Text(
+                '${controller.submissions.length} total',
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: AppColors.kColorTextMuted,
+                ),
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 14),
@@ -360,10 +369,7 @@ class _HistorySection extends GetView<ProfileController> {
             children: controller.submissions
                 .asMap()
                 .entries
-                .map((e) => _SubmissionTile(
-                      submission: e.value,
-                      index: e.key,
-                    ))
+                .map((e) => _SubmissionTile(submission: e.value, index: e.key))
                 .toList(),
           );
         }),
@@ -411,10 +417,7 @@ class _EmptyHistory extends StatelessWidget {
           const SizedBox(height: 6),
           const Text(
             'Complete a survey to see it here',
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.kColorTextMuted,
-            ),
+            style: TextStyle(fontSize: 13, color: AppColors.kColorTextMuted),
           ),
         ],
       ),
@@ -487,7 +490,8 @@ class _SubmissionTileState extends State<_SubmissionTile>
                   color: AppColors.kColorSecondary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: AppColors.kColorSecondary.withOpacity(0.2)),
+                    color: AppColors.kColorSecondary.withOpacity(0.2),
+                  ),
                 ),
                 child: const Icon(
                   Icons.check_circle_rounded,
@@ -515,9 +519,11 @@ class _SubmissionTileState extends State<_SubmissionTile>
                     const SizedBox(height: 5),
                     Row(
                       children: [
-                        const Icon(Icons.access_time_rounded,
-                            size: 12,
-                            color: AppColors.kColorTextMuted),
+                        const Icon(
+                          Icons.access_time_rounded,
+                          size: 12,
+                          color: AppColors.kColorTextMuted,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           s.formattedDate,
@@ -532,9 +538,11 @@ class _SubmissionTileState extends State<_SubmissionTile>
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Icon(Icons.location_on_rounded,
-                              size: 12,
-                              color: AppColors.kColorPrimary),
+                          const Icon(
+                            Icons.location_on_rounded,
+                            size: 12,
+                            color: AppColors.kColorPrimary,
+                          ),
                           const SizedBox(width: 4),
                           Flexible(
                             child: Text(
@@ -555,8 +563,7 @@ class _SubmissionTileState extends State<_SubmissionTile>
 
               // Answers count badge
               Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.kColorPrimary.withOpacity(0.08),
                   borderRadius: BorderRadius.circular(8),
@@ -592,13 +599,14 @@ class _LogoutButton extends GetView<ProfileController> {
           color: AppColors.kColorError.withOpacity(0.07),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-              color: AppColors.kColorError.withOpacity(0.3), width: 1.5),
+            color: AppColors.kColorError.withOpacity(0.3),
+            width: 1.5,
+          ),
         ),
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.logout_rounded,
-                color: AppColors.kColorError, size: 20),
+            Icon(Icons.logout_rounded, color: AppColors.kColorError, size: 20),
             SizedBox(width: 10),
             Text(
               'Logout',
@@ -622,8 +630,7 @@ class _LogoutButton extends GetView<ProfileController> {
         backgroundColor: AppColors.kColorCard,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: BorderSide(
-              color: AppColors.kColorBorder, width: 1),
+          side: const BorderSide(color: AppColors.kColorBorder, width: 1),
         ),
         title: const Text(
           'Logout',

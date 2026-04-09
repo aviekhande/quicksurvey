@@ -109,19 +109,22 @@ class _HomeHeader extends StatelessWidget {
           if (count > 0)
             Container(
               margin: const EdgeInsets.only(right: 12),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: AppColors.kColorSecondary.withOpacity(0.12),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                    color: AppColors.kColorSecondary.withOpacity(0.3)),
+                  color: AppColors.kColorSecondary.withOpacity(0.3),
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.check_circle_outline,
-                      size: 14, color: AppColors.kColorSecondary),
+                  const Icon(
+                    Icons.check_circle_outline,
+                    size: 14,
+                    color: AppColors.kColorSecondary,
+                  ),
                   const SizedBox(width: 5),
                   Text(
                     '$count done',
@@ -211,9 +214,10 @@ class _AnimatedCardState extends State<_AnimatedCard>
       begin: const Offset(0, 0.3),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOutCubic));
-    _fade = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeOut),
-    );
+    _fade = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
 
     // Stagger card entrance based on index
     Future.delayed(Duration(milliseconds: widget.index * 80), () {
@@ -229,7 +233,8 @@ class _AnimatedCardState extends State<_AnimatedCard>
 
   @override
   Widget build(BuildContext context) {
-    final color = AppColors.cardAccents[widget.index % AppColors.cardAccents.length];
+    final color =
+        AppColors.cardAccents[widget.index % AppColors.cardAccents.length];
     final icon = _icons[widget.index % _icons.length];
 
     return SlideTransition(
@@ -264,8 +269,7 @@ class _QuestionnaireCardContent extends StatefulWidget {
       _QuestionnaireCardContentState();
 }
 
-class _QuestionnaireCardContentState
-    extends State<_QuestionnaireCardContent> {
+class _QuestionnaireCardContentState extends State<_QuestionnaireCardContent> {
   bool _pressed = false;
 
   @override
@@ -314,8 +318,7 @@ class _QuestionnaireCardContentState
                 decoration: BoxDecoration(
                   color: widget.color.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(14),
-                  border:
-                      Border.all(color: widget.color.withOpacity(0.25)),
+                  border: Border.all(color: widget.color.withOpacity(0.25)),
                 ),
                 child: Icon(widget.icon, color: widget.color, size: 26),
               ),
@@ -351,8 +354,7 @@ class _QuestionnaireCardContentState
                     Row(
                       children: [
                         _Chip(
-                          label:
-                              '${widget.questionnaire.questions.length} Qs',
+                          label: '${widget.questionnaire.questions.length} Qs',
                           icon: Icons.help_outline_rounded,
                           color: widget.color,
                         ),
@@ -392,11 +394,7 @@ class _QuestionnaireCardContentState
 
 /// Small label chip shown beneath each card's description.
 class _Chip extends StatelessWidget {
-  const _Chip({
-    required this.label,
-    required this.icon,
-    required this.color,
-  });
+  const _Chip({required this.label, required this.icon, required this.color});
   final String label;
   final IconData icon;
   final Color color;
@@ -448,9 +446,10 @@ class _ShimmerListState extends State<_ShimmerList>
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     )..repeat();
-    _anim = Tween<double>(begin: -1.5, end: 1.5).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut),
-    );
+    _anim = Tween<double>(
+      begin: -1.5,
+      end: 1.5,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -463,7 +462,7 @@ class _ShimmerListState extends State<_ShimmerList>
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-      itemCount: 4,
+      itemCount: 8,
       itemBuilder: (_, i) => AnimatedBuilder(
         animation: _anim,
         builder: (_, __) => _ShimmerCard(shimmerOffset: _anim.value),
@@ -478,8 +477,8 @@ class _ShimmerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = AppColors.kColorCard;
-    final highlightColor = AppColors.kColorCardElevated;
+    const baseColor = AppColors.kColorCard;
+    const highlightColor = AppColors.kColorCardElevated;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
@@ -499,8 +498,12 @@ class _ShimmerCard extends StatelessWidget {
               children: [
                 _shimmerBox(120, 14, base: baseColor, hi: highlightColor),
                 const SizedBox(height: 8),
-                _shimmerBox(double.infinity, 12,
-                    base: baseColor, hi: highlightColor),
+                _shimmerBox(
+                  double.infinity,
+                  12,
+                  base: baseColor,
+                  hi: highlightColor,
+                ),
                 const SizedBox(height: 4),
                 _shimmerBox(180, 12, base: baseColor, hi: highlightColor),
               ],
@@ -511,8 +514,13 @@ class _ShimmerCard extends StatelessWidget {
     );
   }
 
-  Widget _shimmerBox(double w, double h,
-      {double radius = 8, required Color base, required Color hi}) {
+  Widget _shimmerBox(
+    double w,
+    double h, {
+    double radius = 8,
+    required Color base,
+    required Color hi,
+  }) {
     return Container(
       width: w,
       height: h,

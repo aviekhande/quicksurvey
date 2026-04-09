@@ -1,6 +1,6 @@
 /// Application-wide string constants and route names.
 class AppStrings {
-  static const String kAppTitle = 'SurveyX';
+  static const String kAppTitle = 'Questionnaire';
   static const String kTagline = 'Insights at your fingertips';
   static const String kRegister = 'Register';
   static const String kLogin = 'Login';
