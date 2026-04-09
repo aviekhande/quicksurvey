@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,7 +75,7 @@ class HomeHeader extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
-                    Icons.check_circle_outline,
+                    AppIcons.checkCircleOutline,
                     size: 14,
                     color: AppColors.kColorSecondary,
                   ),

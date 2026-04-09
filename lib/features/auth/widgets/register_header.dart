@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -25,7 +27,7 @@ class RegisterHeader extends StatelessWidget {
             ],
           ),
           child: const Icon(
-            Icons.person_add_alt_1_rounded,
+            AppIcons.personAddAlt1Rounded,
             color: Colors.white,
             size: 28,
           ),

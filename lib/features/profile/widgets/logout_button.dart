@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +27,7 @@ class LogoutButton extends GetView<ProfileController> {
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.logout_rounded, color: AppColors.kColorError, size: 20),
+            Icon(AppIcons.logoutRounded, color: AppColors.kColorError, size: 20),
             SizedBox(width: 10),
             Text(
               'Logout',

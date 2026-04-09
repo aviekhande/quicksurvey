@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/app_icons.dart';
 import '../../../core/services/crashlytics_service.dart';
 import '../../../core/services/local_storage_service.dart';
 import '../models/user_model.dart';
@@ -186,7 +188,7 @@ class AuthController extends GetxController {
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
-      icon: const Icon(Icons.error_outline_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.errorOutlineRounded, color: Colors.white),
     );
   }
 
@@ -199,7 +201,7 @@ class AuthController extends GetxController {
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
-      icon: const Icon(Icons.check_circle_outline_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.checkCircleOutlineRounded, color: Colors.white),
     );
   }
 

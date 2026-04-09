@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +36,7 @@ class NavBar extends GetView<QuestionnaireController> {
                   height: 54,
                   child: OutlinedButton.icon(
                     onPressed: controller.prevPage,
-                    icon: const Icon(Icons.arrow_back_rounded, size: 18),
+                    icon: const Icon(AppIcons.arrowBackRounded, size: 18),
                     label: const Text(
                       'Back',
                       style: TextStyle(
@@ -61,7 +63,7 @@ class NavBar extends GetView<QuestionnaireController> {
                       label: 'Submit Survey',
                       isLoading: controller.isSubmitting.value,
                       onTap: controller.submit,
-                      icon: Icons.check_circle_outline_rounded,
+                      icon: AppIcons.checkCircleOutlineRounded,
                       gradient: controller.allAnswered
                           ? AppColors.gradientSuccess
                           : AppColors.gradientPrimary,
@@ -69,7 +71,7 @@ class NavBar extends GetView<QuestionnaireController> {
                   : PrimaryButton(
                       label: 'Next Question',
                       onTap: controller.nextPage,
-                      icon: Icons.arrow_forward_rounded,
+                      icon: AppIcons.arrowForwardRounded,
                     ),
             ),
           ],

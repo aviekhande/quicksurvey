@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +35,7 @@ class ProfileAppBar extends StatelessWidget {
                 border: Border.all(color: AppColors.kColorBorder),
               ),
               child: const Icon(
-                Icons.arrow_back_ios_new_rounded,
+                AppIcons.arrowBackIosNewRounded,
                 color: AppColors.kColorText,
                 size: 18,
               ),

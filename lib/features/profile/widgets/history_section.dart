@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,7 +79,7 @@ class EmptyHistory extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: const Icon(
-              Icons.inbox_rounded,
+              AppIcons.inboxRounded,
               color: AppColors.kColorTextMuted,
               size: 32,
             ),
@@ -169,7 +171,7 @@ class _SubmissionTileState extends State<SubmissionTile>
                   ),
                 ),
                 child: const Icon(
-                  Icons.check_circle_rounded,
+                  AppIcons.checkCircleRounded,
                   color: AppColors.kColorSecondary,
                   size: 22,
                 ),
@@ -193,7 +195,7 @@ class _SubmissionTileState extends State<SubmissionTile>
                     Row(
                       children: [
                         const Icon(
-                          Icons.access_time_rounded,
+                          AppIcons.accessTimeRounded,
                           size: 12,
                           color: AppColors.kColorTextMuted,
                         ),
@@ -212,7 +214,7 @@ class _SubmissionTileState extends State<SubmissionTile>
                       Row(
                         children: [
                           const Icon(
-                            Icons.location_on_rounded,
+                            AppIcons.locationOnRounded,
                             size: 12,
                             color: AppColors.kColorPrimary,
                           ),

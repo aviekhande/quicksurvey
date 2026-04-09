@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -116,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
                         ],
                         prefixIcon: const Icon(
-                          Icons.phone_outlined,
+                          AppIcons.phoneOutlined,
                           color: AppColors.kColorTextMuted,
                           size: 20,
                         ),
@@ -133,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           obscureText: ctrl.obscureRegisterPass.value,
                           validator: ctrl.validatePassword,
                           prefixIcon: const Icon(
-                            Icons.lock_outline_rounded,
+                            AppIcons.lockOutlineRounded,
                             color: AppColors.kColorTextMuted,
                             size: 20,
                           ),
@@ -141,8 +143,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                             onTap: () => ctrl.obscureRegisterPass.toggle(),
                             child: Icon(
                               ctrl.obscureRegisterPass.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
+                                  ? AppIcons.visibilityOffOutlined
+                                  : AppIcons.visibilityOutlined,
                               color: AppColors.kColorTextMuted,
                               size: 20,
                             ),
@@ -163,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           textInputAction: TextInputAction.done,
                           onFieldSubmitted: (_) => ctrl.register(),
                           prefixIcon: const Icon(
-                            Icons.lock_outline_rounded,
+                            AppIcons.lockOutlineRounded,
                             color: AppColors.kColorTextMuted,
                             size: 20,
                           ),
@@ -171,8 +173,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                             onTap: () => ctrl.obscureRegisterConfirm.toggle(),
                             child: Icon(
                               ctrl.obscureRegisterConfirm.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
+                                  ? AppIcons.visibilityOffOutlined
+                                  : AppIcons.visibilityOutlined,
                               color: AppColors.kColorTextMuted,
                               size: 20,
                             ),
@@ -188,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           label: 'Create Account',
                           isLoading: ctrl.isLoading.value,
                           onTap: ctrl.register,
-                          icon: Icons.person_add_outlined,
+                          icon: AppIcons.personAddOutlined,
                         ),
                       ),
                     ),

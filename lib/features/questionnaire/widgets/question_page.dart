@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -117,7 +119,7 @@ class OptionTile extends GetView<QuestionnaireController> {
                 child: Center(
                   child: selected
                       ? const Icon(
-                          Icons.check_rounded,
+                          AppIcons.checkRounded,
                           color: Colors.white,
                           size: 19,
                         )
@@ -148,13 +150,13 @@ class OptionTile extends GetView<QuestionnaireController> {
                 duration: const Duration(milliseconds: 200),
                 child: selected
                     ? const Icon(
-                        Icons.radio_button_checked_rounded,
+                        AppIcons.radioButtonCheckedRounded,
                         key: ValueKey('on'),
                         color: AppColors.kColorPrimary,
                         size: 22,
                       )
                     : const Icon(
-                        Icons.radio_button_unchecked_rounded,
+                        AppIcons.radioButtonUncheckedRounded,
                         key: ValueKey('off'),
                         color: AppColors.kColorBorder,
                         size: 22,

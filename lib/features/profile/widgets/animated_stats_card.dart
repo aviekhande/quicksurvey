@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +45,7 @@ class AnimatedStatsCard extends GetView<ProfileController> {
               ],
             ),
             child: const Icon(
-              Icons.assignment_turned_in_rounded,
+              AppIcons.assignmentTurnedInRounded,
               color: Colors.white,
               size: 26,
             ),
@@ -70,7 +72,7 @@ class AnimatedStatsCard extends GetView<ProfileController> {
           ),
           if (controller.submissionCount.value >= 3)
             const Icon(
-              Icons.emoji_events_rounded,
+              AppIcons.emojiEventsRounded,
               color: AppColors.kColorWarning,
               size: 32,
             ),

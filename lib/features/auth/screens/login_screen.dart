@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -118,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen>
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
                         ],
                         prefixIcon: const Icon(
-                          Icons.phone_outlined,
+                          AppIcons.phoneOutlined,
                           color: AppColors.kColorTextMuted,
                           size: 20,
                         ),
@@ -137,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen>
                           textInputAction: TextInputAction.done,
                           onFieldSubmitted: (_) => ctrl.login(),
                           prefixIcon: const Icon(
-                            Icons.lock_outline_rounded,
+                            AppIcons.lockOutlineRounded,
                             color: AppColors.kColorTextMuted,
                             size: 20,
                           ),
@@ -145,8 +147,8 @@ class _LoginScreenState extends State<LoginScreen>
                             onTap: () => ctrl.obscureLoginPass.toggle(),
                             child: Icon(
                               ctrl.obscureLoginPass.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
+                                  ? AppIcons.visibilityOffOutlined
+                                  : AppIcons.visibilityOutlined,
                               color: AppColors.kColorTextMuted,
                               size: 20,
                             ),
@@ -162,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen>
                           label: 'Login',
                           isLoading: ctrl.isLoading.value,
                           onTap: ctrl.login,
-                          icon: Icons.login_rounded,
+                          icon: AppIcons.loginRounded,
                         ),
                       ),
                     ),

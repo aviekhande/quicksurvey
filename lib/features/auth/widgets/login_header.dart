@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -24,7 +26,7 @@ class LoginHeader extends StatelessWidget {
               ),
             ],
           ),
-          child: const Icon(Icons.bolt_rounded, color: Colors.white, size: 30),
+          child: const Icon(AppIcons.boltRounded, color: Colors.white, size: 30),
         ),
         const SizedBox(height: 24),
         const Text(

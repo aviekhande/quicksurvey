@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -21,7 +23,7 @@ class LogoBadge extends StatelessWidget {
           ),
         ],
       ),
-      child: const Icon(Icons.poll_outlined, color: Colors.white, size: 40),
+      child: const Icon(AppIcons.pollOutlined, color: Colors.white, size: 40),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:questionnaire/features/home/widgets/chip.dart';
 
@@ -25,11 +27,11 @@ class _AnimatedCardState extends State<AnimatedCard>
   late Animation<double> _fade;
 
   static const _icons = [
-    Icons.star_rounded,
-    Icons.people_alt_rounded,
-    Icons.tune_rounded,
-    Icons.favorite_rounded,
-    Icons.devices_rounded,
+    AppIcons.starRounded,
+    AppIcons.peopleAltRounded,
+    AppIcons.tuneRounded,
+    AppIcons.favoriteRounded,
+    AppIcons.devicesRounded,
   ];
 
   @override
@@ -180,13 +182,13 @@ class _QuestionnaireCardContentState extends State<QuestionnaireCardContent> {
                       children: [
                         CustomChip(
                           label: '${widget.questionnaire.questions.length} Qs',
-                          icon: Icons.help_outline_rounded,
+                          icon: AppIcons.helpOutlineRounded,
                           color: widget.color,
                         ),
                         const SizedBox(width: 8),
                         CustomChip(
                           label: widget.questionnaire.category,
-                          icon: Icons.label_outline_rounded,
+                          icon: AppIcons.labelOutlineRounded,
                           color: AppColors.kColorTextMuted,
                         ),
                       ],
@@ -202,7 +204,7 @@ class _QuestionnaireCardContentState extends State<QuestionnaireCardContent> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
-                  Icons.chevron_right_rounded,
+                  AppIcons.chevronRightRounded,
                   color: widget.color,
                   size: 20,
                 ),
