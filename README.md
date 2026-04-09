@@ -69,14 +69,13 @@ QuickSurvey is a mobile-first survey and questionnaire application designed to e
 ## 📸 Screenshots
 
 ### App Logo
-<img src="assets/images/app_logo.png" width="150"/>
 <img src="assets/images/app_logo1.png" width="150"/>
 
 ### App Screenshots
 <p align="center">
+  <img src="assets/screenshots/Screenshot_1775759364.png" width="200"/>
   <img src="assets/screenshots/Screenshot_1775759340.png" width="200"/>
   <img src="assets/screenshots/Screenshot_1775759348.png" width="200"/>
-  <img src="assets/screenshots/Screenshot_1775759364.png" width="200"/>
   <img src="assets/screenshots/Screenshot_1775759422.png" width="200"/>
 </p>
 
