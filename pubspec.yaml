@@ -27,11 +27,24 @@ dependencies:
   firebase_crashlytics: ^5.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_logo.png"
+
+  adaptive_icon_background: "#800080"
+  adaptive_icon_foreground: "assets/images/app_logo.png"
+
   hive_generator: ^2.0.1
   build_runner: ^2.4.8
   flutter_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
