@@ -1,3 +1,3 @@
-# quicksurvey
+# questionnaire
 
 A new Flutter project.
