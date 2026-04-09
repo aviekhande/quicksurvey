@@ -24,6 +24,7 @@ dependencies:
   # UI
   flutter_screenutil: ^5.9.0
   firebase_core: ^4.6.0
+  firebase_crashlytics: ^5.1.0
 
 dev_dependencies:
   flutter_test:

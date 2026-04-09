@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../../../core/theme/app_colors.dart';
 
-
+/// A styled, reusable text form field with label, prefix/suffix icons,
+/// validation support, and consistent dark-theme design.
 class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
@@ -19,6 +20,7 @@ class AppTextField extends StatelessWidget {
     this.textInputAction = TextInputAction.next,
     this.onFieldSubmitted,
     this.enabled = true,
+    this.autofocus = false,
   });
 
   final TextEditingController controller;
@@ -33,19 +35,22 @@ class AppTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final void Function(String)? onFieldSubmitted;
   final bool enabled;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Optional label above the field
         if (labelText != null) ...[
           Text(
             labelText!,
             style: const TextStyle(
-              color: AppColors.kColorWhite75,
+              color: AppColors.kColorTextSecondary,
               fontSize: 13,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.2,
             ),
           ),
           const SizedBox(height: 8),
@@ -56,12 +61,14 @@ class AppTextField extends StatelessWidget {
           keyboardType: keyboardType,
           validator: validator,
           enabled: enabled,
+          autofocus: autofocus,
           inputFormatters: inputFormatters,
           textInputAction: textInputAction,
           onFieldSubmitted: onFieldSubmitted,
+          // Show errors only after user interacts with the field
           autovalidateMode: AutovalidateMode.onUserInteraction,
           style: const TextStyle(
-            color: AppColors.kColorPrimaryText,
+            color: AppColors.kColorText,
             fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
@@ -71,38 +78,41 @@ class AppTextField extends StatelessWidget {
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             filled: true,
-            fillColor: AppColors.kColorWhite5,
+            fillColor: AppColors.kColorCard,
             hintStyle: const TextStyle(
-              color: AppColors.kColorWhite50,
-              fontSize: 15,
+              color: AppColors.kColorTextMuted,
+              fontSize: 14,
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.kColorCrlBorder),
+              borderRadius: BorderRadius.circular(14),
+              borderSide: const BorderSide(color: AppColors.kColorBorder),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.kColorCrlBorder),
+              borderRadius: BorderRadius.circular(14),
+              borderSide: const BorderSide(color: AppColors.kColorBorder),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
               borderSide: const BorderSide(
-                  color: AppColors.kColorPrimary, width: 1.5),
+                color: AppColors.kColorPrimary,
+                width: 2,
+              ),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
               borderSide: const BorderSide(color: AppColors.kColorError),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: AppColors.kColorError),
+              borderRadius: BorderRadius.circular(14),
+              borderSide:
+                  const BorderSide(color: AppColors.kColorError, width: 2),
             ),
             errorStyle: const TextStyle(
               color: AppColors.kColorError,
               fontSize: 12,
             ),
             contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           ),
         ),
       ],
