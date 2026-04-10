@@ -117,7 +117,9 @@ class _LoginScreenState extends State<LoginScreen>
                         keyboardType: TextInputType.phone,
                         validator: ctrl.validatePhone,
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
+                          FilteringTextInputFormatter
+                              .digitsOnly, 
+                          LengthLimitingTextInputFormatter(10), 
                         ],
                         prefixIcon: const Icon(
                           AppIcons.phoneOutlined,

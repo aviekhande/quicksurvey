@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,10 +74,7 @@ class AuthController extends GetxController {
         return;
       }
 
-      final user = UserModel(
-        phone: phone,
-        password: registerPassCtrl.text,
-      );
+      final user = UserModel(phone: phone, password: registerPassCtrl.text);
       await LocalStorageService.registerUser(user);
 
       _showSuccess('Account created! Please login.');
@@ -145,10 +141,17 @@ class AuthController extends GetxController {
 
   /// Validates international phone number format.
   String? validatePhone(String? value) {
-    if (value == null || value.trim().isEmpty) return 'Phone number is required';
-    if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value.trim())) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Phone number is required';
+    }
+
+    final phone = value.trim();
+
+    // Indian mobile number validation (10 digits, starts with 6-9)
+    if (!RegExp(r'^[6-9]\d{9}$').hasMatch(phone)) {
       return 'Enter a valid phone number';
     }
+
     return null;
   }
 
@@ -181,7 +184,8 @@ class AuthController extends GetxController {
 
   void _showError(String msg) {
     Get.snackbar(
-      'Error', msg,
+      'Error',
+      msg,
       backgroundColor: const Color(0xFFFF4E6A),
       colorText: Colors.white,
       margin: const EdgeInsets.all(16),
@@ -194,7 +198,8 @@ class AuthController extends GetxController {
 
   void _showSuccess(String msg) {
     Get.snackbar(
-      'Success', msg,
+      'Success',
+      msg,
       backgroundColor: const Color(0xFF00D4AA),
       colorText: Colors.white,
       margin: const EdgeInsets.all(16),
