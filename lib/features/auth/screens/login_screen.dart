@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,8 +9,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../shared/widgets/app_text_field.dart';
 import '../../shared/widgets/primary_button.dart';
 import '../controllers/auth_controller.dart';
+import '../widgets/login_header.dart';
 
-/// Login screen with staggered field animations and gradient background accent.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -30,17 +32,18 @@ class _LoginScreenState extends State<LoginScreen>
       duration: const Duration(milliseconds: 900),
     );
 
-    // Stagger 4 elements: header, phone, password, button
     _slideAnims = List.generate(4, (i) {
       final start = i * 0.15;
       final end = (start + 0.5).clamp(0.0, 1.0);
       return Tween<Offset>(
         begin: const Offset(0, 0.4),
         end: Offset.zero,
-      ).animate(CurvedAnimation(
-        parent: _enterCtrl,
-        curve: Interval(start, end, curve: Curves.easeOutCubic),
-      ));
+      ).animate(
+        CurvedAnimation(
+          parent: _enterCtrl,
+          curve: Interval(start, end, curve: Curves.easeOutCubic),
+        ),
+      );
     });
 
     _fadeAnims = List.generate(4, (i) {
@@ -77,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen>
       backgroundColor: AppColors.kColorBg,
       body: Stack(
         children: [
-          // Background accent glow
           Positioned(
             top: -100,
             right: -80,
@@ -95,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen>
               ),
             ),
           ),
-
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -105,12 +106,8 @@ class _LoginScreenState extends State<LoginScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 40),
-
-                    // Header
-                    _animated(0, _Header()),
+                    _animated(0, const LoginHeader()),
                     const SizedBox(height: 48),
-
-                    // Phone field
                     _animated(
                       1,
                       AppTextField(
@@ -120,60 +117,60 @@ class _LoginScreenState extends State<LoginScreen>
                         keyboardType: TextInputType.phone,
                         validator: ctrl.validatePhone,
                         inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9+]')),
+                          FilteringTextInputFormatter
+                              .digitsOnly, 
+                          LengthLimitingTextInputFormatter(10), 
                         ],
                         prefixIcon: const Icon(
-                          Icons.phone_outlined,
+                          AppIcons.phoneOutlined,
                           color: AppColors.kColorTextMuted,
                           size: 20,
                         ),
                       ),
                     ),
                     const SizedBox(height: 20),
-
-                    // Password field with visibility toggle
                     _animated(
                       2,
-                      Obx(() => AppTextField(
-                            controller: ctrl.loginPassCtrl,
-                            hintText: 'Enter your password',
-                            labelText: 'Password',
-                            obscureText: ctrl.obscureLoginPass.value,
-                            validator: ctrl.validatePassword,
-                            textInputAction: TextInputAction.done,
-                            onFieldSubmitted: (_) => ctrl.login(),
-                            prefixIcon: const Icon(
-                              Icons.lock_outline_rounded,
+                      Obx(
+                        () => AppTextField(
+                          controller: ctrl.loginPassCtrl,
+                          hintText: 'Enter your password',
+                          labelText: 'Password',
+                          obscureText: ctrl.obscureLoginPass.value,
+                          validator: ctrl.validatePassword,
+                          textInputAction: TextInputAction.done,
+                          onFieldSubmitted: (_) => ctrl.login(),
+                          prefixIcon: const Icon(
+                            AppIcons.lockOutlineRounded,
+                            color: AppColors.kColorTextMuted,
+                            size: 20,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () => ctrl.obscureLoginPass.toggle(),
+                            child: Icon(
+                              ctrl.obscureLoginPass.value
+                                  ? AppIcons.visibilityOffOutlined
+                                  : AppIcons.visibilityOutlined,
                               color: AppColors.kColorTextMuted,
                               size: 20,
                             ),
-                            suffixIcon: GestureDetector(
-                              onTap: () => ctrl.obscureLoginPass.toggle(),
-                              child: Icon(
-                                ctrl.obscureLoginPass.value
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                                color: AppColors.kColorTextMuted,
-                                size: 20,
-                              ),
-                            ),
-                          )),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 36),
-
-                    // Login button
                     _animated(
                       3,
-                      Obx(() => PrimaryButton(
-                            label: 'Login',
-                            isLoading: ctrl.isLoading.value,
-                            onTap: ctrl.login,
-                            icon: Icons.login_rounded,
-                          )),
+                      Obx(
+                        () => PrimaryButton(
+                          label: 'Login',
+                          isLoading: ctrl.isLoading.value,
+                          onTap: ctrl.login,
+                          icon: AppIcons.loginRounded,
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 28),
-
-                    // Register link
                     _animated(
                       3,
                       Center(
@@ -207,53 +204,6 @@ class _LoginScreenState extends State<LoginScreen>
           ),
         ],
       ),
-    );
-  }
-}
-
-/// The login page header with icon badge, title and subtitle.
-class _Header extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 58,
-          height: 58,
-          decoration: BoxDecoration(
-            gradient: AppColors.gradientPrimary,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.kColorPrimary.withOpacity(0.4),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
-              ),
-            ],
-          ),
-          child: const Icon(Icons.bolt_rounded, color: Colors.white, size: 30),
-        ),
-        const SizedBox(height: 24),
-        const Text(
-          'Welcome Back! 👋',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w800,
-            color: AppColors.kColorText,
-            height: 1.2,
-          ),
-        ),
-        const SizedBox(height: 10),
-        const Text(
-          'Sign in to continue your survey journey',
-          style: TextStyle(
-            fontSize: 15,
-            color: AppColors.kColorTextSecondary,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ],
     );
   }
 }

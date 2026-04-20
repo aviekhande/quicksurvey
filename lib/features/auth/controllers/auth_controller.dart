@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/app_constants.dart';
+import '../../../core/constants/app_icons.dart';
 import '../../../core/services/crashlytics_service.dart';
 import '../../../core/services/local_storage_service.dart';
 import '../models/user_model.dart';
@@ -73,10 +74,7 @@ class AuthController extends GetxController {
         return;
       }
 
-      final user = UserModel(
-        phone: phone,
-        password: registerPassCtrl.text,
-      );
+      final user = UserModel(phone: phone, password: registerPassCtrl.text);
       await LocalStorageService.registerUser(user);
 
       _showSuccess('Account created! Please login.');
@@ -143,10 +141,17 @@ class AuthController extends GetxController {
 
   /// Validates international phone number format.
   String? validatePhone(String? value) {
-    if (value == null || value.trim().isEmpty) return 'Phone number is required';
-    if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value.trim())) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Phone number is required';
+    }
+
+    final phone = value.trim();
+
+    // Indian mobile number validation (10 digits, starts with 6-9)
+    if (!RegExp(r'^[6-9]\d{9}$').hasMatch(phone)) {
       return 'Enter a valid phone number';
     }
+
     return null;
   }
 
@@ -179,27 +184,29 @@ class AuthController extends GetxController {
 
   void _showError(String msg) {
     Get.snackbar(
-      'Error', msg,
+      'Error',
+      msg,
       backgroundColor: const Color(0xFFFF4E6A),
       colorText: Colors.white,
       margin: const EdgeInsets.all(16),
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
-      icon: const Icon(Icons.error_outline_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.errorOutlineRounded, color: Colors.white),
     );
   }
 
   void _showSuccess(String msg) {
     Get.snackbar(
-      'Success', msg,
+      'Success',
+      msg,
       backgroundColor: const Color(0xFF00D4AA),
       colorText: Colors.white,
       margin: const EdgeInsets.all(16),
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
-      icon: const Icon(Icons.check_circle_outline_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.checkCircleOutlineRounded, color: Colors.white),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'package:questionnaire/core/constants/app_icons.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -150,7 +152,7 @@ class QuestionnaireController extends GetxController {
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
-      icon: const Icon(Icons.warning_amber_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.warningAmberRounded, color: Colors.white),
     );
   }
 
@@ -163,7 +165,7 @@ class QuestionnaireController extends GetxController {
       borderRadius: 14,
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 2),
-      icon: const Icon(Icons.check_circle_outline_rounded, color: Colors.white),
+      icon: const Icon(AppIcons.checkCircleOutlineRounded, color: Colors.white),
     );
   }
 
